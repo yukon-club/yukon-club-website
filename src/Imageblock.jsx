@@ -29,7 +29,7 @@ export default function Hero() {
   }, []);
 
   // Get video path - files in public folder are served from root
-  // In development: /V1.mp4, in production: /yukon-club-website/V1.mp4
+  // Works for both development and production (custom domain at root)
   const videoPath = `${process.env.PUBLIC_URL || ''}/V1.mp4`;
 
   return (

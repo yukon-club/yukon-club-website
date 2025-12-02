@@ -12,10 +12,8 @@ import Cookies from './Cookies';
 import Privacy from './Privacy';
 
 function App() {
-  const basename = process.env.NODE_ENV === 'production' ? '/yukon-club-website' : '';
-  
   return (
-    <Router basename={basename}>
+    <Router>
       <div className="flex flex-col min-h-screen bg-bone text-black selection:bg-black selection:text-white">
         {/* Header is standard flow, not fixed */}
         <Navbar />

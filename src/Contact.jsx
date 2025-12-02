@@ -17,7 +17,7 @@ function Contact() {
 
          <div className="py-8 border-b border-gray-300">
             <h3 className="font-bold text-lg mb-2">DIRECT</h3>
-            <a href="mailto:info@thyukonclub.com" className="text-2xl md:text-4xl font-larsseit-medium hover:underline">
+            <a href="mailto:info@theyukonclub.com" className="text-2xl md:text-4xl font-larsseit-medium hover:underline">
                info@theyukonclub.com
             </a>
          </div>
