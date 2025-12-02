@@ -2,12 +2,7 @@ import React from 'react';
 
 function Music() {
   const releases = [
-    { title: 'KOUYOU', type: 'EP', year: '2024', label: 'INDEPENDENT' },
-    { title: 'ABSENCE', type: 'SINGLE', year: '2021', label: 'FULL SPECTRUM' },
-    { title: 'EXHALE', type: 'EP', year: '2019', label: 'YUKON RECORDS' },
-    { title: 'STAY', type: 'SINGLE', year: '2018', label: 'YUKON RECORDS' },
-    { title: 'ECHOES', type: 'SINGLE', year: '2018', label: 'YUKON RECORDS' },
-    { title: 'YUKON CLUB', type: 'EP', year: '2017', label: 'INDEPENDENT' },
+    { title: 'KOUYOU', type: 'EP', year: '2025', label: 'INDEPENDENT' },
   ];
 
   return (
