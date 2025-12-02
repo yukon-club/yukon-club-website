@@ -6,77 +6,29 @@
 
 @layer base {
   body {
-    @apply font-larsseit-light bg-[#242424] text-white min-h-screen m-0 p-0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply font-larsseit-medium bg-bone text-black antialiased min-h-screen m-0 p-0;
   }
 
-  h1, h2, h3, h4, h5, h6, .nav-link {
-    @apply font-larsseit-medium;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-larsseit-medium uppercase text-black;
+  }
+  
+  a {
+    @apply transition-colors duration-200 text-black hover:text-gray-hover;
+    text-decoration: none;
   }
 }
 
 @layer components {
-  .main-container {
-    @apply pt-40 md:pt-48 px-4 min-h-screen flex flex-col;
+  .container-minimal {
+    @apply max-w-4xl mx-auto px-4 md:px-8;
   }
 
-  .content-section {
-    @apply max-w-7xl mx-auto w-full flex-grow;
+  .heavy-border-t {
+    @apply border-t-2 border-black;
   }
-
-  .nav-link {
-    @apply text-lg transition-colors duration-200;
-  }
-
-  .social-icons {
-    @apply flex justify-center items-center space-x-6 mt-4;
-  }
-
-  .social-icon {
-    @apply text-[#646cff] hover:text-[#535bf2] transition-colors duration-200;
+  
+  .heavy-border-b {
+    @apply border-b-2 border-black;
   }
 }
-
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  @apply text-[#646cff] hover:text-[#535bf2] transition-colors duration-200;
-}
-
-button {
-  @apply rounded-lg border border-transparent px-4 py-2 text-base font-medium 
-         bg-[#1a1a1a] cursor-pointer transition-colors duration-200
-         hover:border-[#646cff] focus:outline-none focus:ring-2 focus:ring-[#646cff];
-}
-
-h1 {
-  @apply text-4xl md:text-5xl leading-tight;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-

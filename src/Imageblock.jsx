@@ -1,77 +1,66 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Parallax } from "react-parallax";
+import React, { useEffect, useRef } from "react";
 
 export default function Hero() {
   const videoRef = useRef(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Force video to play when component mounts
-    if (videoRef.current) {
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsLoaded(true);
-          })
-          .catch((error) => {
-            console.log("Video autoplay failed:", error);
-          });
-      }
-    }
+    const video = videoRef.current;
+    if (!video) return;
+    
+    const handleLoadedData = () => {
+      console.log('Video loaded successfully');
+    };
+    
+    const handleError = (e) => {
+      console.error('Video error details:', e);
+      console.error('Video error code:', video.error?.code);
+      console.error('Video error message:', video.error?.message);
+      console.error('Video src attempted:', video.src);
+    };
+    
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('error', handleError);
+    
+    // Cleanup
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('error', handleError);
+    };
   }, []);
 
+  // Get video path - files in public folder are served from root
+  // In development: /V1.mp4, in production: /yukon-club-website/V1.mp4
+  const videoPath = `${process.env.PUBLIC_URL || ''}/V1.mp4`;
+
   return (
-    <div className="w-full flex flex-col items-center pb-8 md:pb-12 lg:pb-16 px-4 overflow-hidden">
-      <div className="w-full max-w-5xl">
-        <Parallax
-          strength={300}
-          style={{
-            width: '100%',
-            height: 'auto',
-          }}
-        >
-          <div className="relative w-full bg-black" style={{ aspectRatio: '16/9' }}>
+    <div className="w-full flex flex-col items-center pb-8 md:pb-12">
+      <div className="w-full max-w-4xl px-4">
+         <div className="aspect-video w-full bg-black overflow-hidden">
             <video 
-              ref={videoRef}
-              src={`${process.env.PUBLIC_URL || ''}/V1.mp4`}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                console.error("Video error:", e);
-              }}
-              onLoadedData={() => {
-                setIsLoaded(true);
-              }}
-              style={{
-                display: 'block',
-                width: '100%',
-                height: '100%'
-              }}
-            />
-            {!isLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black">
-                <div className="w-12 h-12 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              </div>
-            )}
-          </div>
-        </Parallax>
-        
-        {/* KOUYOU EP Link */}
-        <div className="text-center mt-12 md:mt-16">
-          <a 
-            href="https://linktr.ee/yukonclub" 
+               ref={videoRef}
+               src={videoPath}
+               autoPlay
+               loop
+               muted
+               playsInline
+               preload="auto"
+               className="w-full h-full object-cover"
+            >
+               Your browser does not support the video tag.
+            </video>
+         </div>
+      </div>
+      
+      {/* KOUYOU EP Link */}
+      <div className="mt-12 md:mt-16 text-center">
+         <a 
+            href="https://open.spotify.com/artist/0ByvroCyJio8uBdV5caf5i" 
             target="_blank" 
             rel="noreferrer"
-            className="text-sm md:text-base font-larsseit-medium uppercase tracking-wide underline decoration-2 underline-offset-4 hover:text-gray-600 transition-colors"
-          >
-            KOUYOU EP out now. Listen here
-          </a>
-        </div>
+            className="text-sm md:text-base font-larsseit-medium uppercase tracking-widest underline hover:text-gray-600 transition-colors"
+         >
+            KOUYOU EP OUT NOW. LISTEN HERE
+         </a>
       </div>
     </div>
   );

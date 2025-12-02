@@ -1,8 +1,6 @@
-// Navbar.jsx
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import './App.css';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Voor hamburger en sluiten iconen
+import { FaBars, FaTimes } from 'react-icons/fa';
 import SocialMediaIcons from "./SocialMediaIcons";
 
 const Navbar = () => {
@@ -16,67 +14,64 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-[#242424] fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        {/* Logo and Menu Container */}
-        <div className="flex flex-col items-center justify-center space-y-4">
-          {/* Logo */}
-          <Link to="/" className="font-larsseit-medium text-2xl text-[#646cff] hover:text-[#535bf2]">
-            YUKON CLUB
-          </Link>
+    <header className="w-full pt-12 pb-8 px-4 flex flex-col items-center z-50">
+      
+      {/* 1. Big Center Title */}
+      <Link 
+        to="/" 
+        className="text-4xl md:text-6xl font-larsseit-medium text-black tracking-tight uppercase mb-6 hover:text-gray-600 transition-colors text-center"
+        onClick={() => setIsOpen(false)}
+      >
+        YUKON CLUB
+      </Link>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-[#646cff] hover:text-[#535bf2] focus:outline-none"
-              aria-label="Toggle menu"
+      {/* 2. Social Icons Row */}
+      <div className="mb-6">
+         <SocialMediaIcons />
+      </div>
+
+      {/* 3. Navigation Links - Desktop */}
+      <nav className="hidden md:flex items-center space-x-6">
+        {menuItems.map((item, index) => (
+          <React.Fragment key={item.path}>
+            <Link
+              to={item.path}
+              className="text-lg font-larsseit-medium text-black hover:text-gray-500 transition-colors uppercase tracking-wide"
             >
-              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
-          </div>
+              {item.label}
+            </Link>
+            {index < menuItems.length - 1 && (
+               <span className="text-black mx-1">|</span>
+            )}
+          </React.Fragment>
+        ))}
+      </nav>
 
-          {/* Desktop menu */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {menuItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="nav-link text-[#646cff] hover:text-[#535bf2] text-lg"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+      {/* Mobile Toggle */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden mt-4 text-black p-2 border border-black uppercase text-xs font-bold tracking-widest"
+      >
+        {isOpen ? "Close" : "Menu"}
+      </button>
 
-        {/* Mobile menu */}
-        <div className={`${isOpen ? 'block' : 'hidden'} md:hidden mt-4`}>
-          <div className="flex flex-col items-center space-y-4">
-            {menuItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="nav-link text-[#646cff] hover:text-[#535bf2] text-lg"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="mt-4">
-              <SocialMediaIcons />
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <nav className="md:hidden flex flex-col items-center space-y-4 mt-6 w-full py-6 border-t-2 border-b-2 border-black bg-bone">
+           {menuItems.map((item) => (
+             <Link
+               key={item.path}
+               to={item.path}
+               className="text-xl font-larsseit-medium text-black uppercase"
+               onClick={() => setIsOpen(false)}
+             >
+               {item.label}
+             </Link>
+           ))}
+        </nav>
+      )}
 
-      {/* Social Icons */}
-      <div className="hidden md:block mt-4 py-4 border-t border-[#646cff]/20">
-        <div className="max-w-7xl mx-auto px-4">
-          <SocialMediaIcons />
-        </div>
-      </div>
-    </nav>
+    </header>
   );
 };
 

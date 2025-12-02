@@ -15,7 +15,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto px-4 pb-24 pt-12 md:pt-16">
+    <div className="w-full max-w-md mx-auto px-4 pt-12 md:pt-16 pb-24">
       <div className="text-center mb-8">
          {/* The requested playful text */}
          <h2 className="text-xl font-larsseit-medium uppercase underline decoration-2 underline-offset-4 mb-2">

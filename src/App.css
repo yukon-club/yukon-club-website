@@ -1,209 +1,22 @@
-#root {
-  max-width: 100vw;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/* Helper classes for embeds that are harder to do with pure Tailwind utilities */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {  
-  color: #888;
-}
-
-.nav {
-  display: flex;
-  color: whitesmoke;
-  /* justify-content: flex-end; */
-  justify-content: space-between; 
- /* width: 100%; 
-  height: 90px; */
-  align-items: center;
-  padding-right: 2rem;
-  box-sizing: border-box;
-}
-
-.nav--hamburger {
-  display: none; /* Verbergen op grotere schermen */
-  cursor: pointer;
-}
-
-.nav-menu {
-  display: flex; /* Voor grote schermen */
-}
-
-@media (max-width: 768px) {
-  .nav--hamburger {
-    display: block; /* Toon het hamburgericoon op mobiele schermen */
-  }
-
-  .nav-menu {
-    display: none; /* Verberg het menu standaard op mobiele schermen
-    position: absolute; */
-    background-color: #333;
-    width: 100%; /* Volledige breedte */
-    top: 100%;
-  }
-
-  .nav-menu.expanded {
-    display: flex;
-    flex-direction: column; /* Stapel menu-items verticaal */
-    align-items: center; /* Centreer menu-items
-    position: absolute */
-  /*  top: 100%;
-    left: 0;
-    right: 0; */
-    background-color: #333; /* Of een andere kleur passend bij jouw ontwerp */
-  }
-
-  .nav--h1, .nav--h4 {
-    padding: 15px; 
-  }
-
-}
-
-.nav--h1 {
-  margin-right: auto;
-  padding: 30px 50px;
-}
-
-.nav--h1 a {
-  color: #E7DAC7; /* Stelt de kleur van de link in */
-  text-decoration: none; /* Verwijdert de onderstreping */
-}
-
-.nav--h4 a {
-  color: #E7DAC7; /* Stelt de kleur van de link in */
-  text-decoration: none; /* Verwijdert de onderstreping */
-}
-
-.nav--h4 {
-  margin-left: 10px;
-  padding: 30px 20px;
-}
-
-.social-icons-header {
-  display: flex;
-  gap: 16px;
-  padding: 20px;
-  text-decoration: none; /* Verwijdert de onderstreping */
-}
-
-.social-icons-header a {
-  margin: 0 8px; /* Of welke marge je ook hebt gekozen */
-  color: #E7DAC7; /* Vervang #FFFFFF met de gewenste hex-kleurcode */
-  text-decoration: none; /* Dit verwijdert de onderstreping van links */
-}
-
-@media (max-width: 768px) {
-  .social-icons-header {
-    display: none; 
-  }
-}
-
-.social-icons-header a:hover,
-.social-icons-header a:focus {
-  color: #CCCCCC; /* Een lichtere tint voor hover en focus, of kies een andere kleur */
-}
-
-.tour-list {
-  font-weight: bold;
-}
-
-
-.image-container {
-  width: 100%; /* Zorgt ervoor dat de container de volledige breedte van de viewport inneemt */
-  max-width: 100%;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .image-container .parallax-inner {
-    height: 300px; /* Een kortere hoogte voor tablets en middelgrote schermen */
-  }
-}
-
-@media (max-width: 480px) {
-  .image-container .parallax-inner {
-    height: 200px; /* Een nog kortere hoogte voor kleine mobiele schermen */
-  }
-}
-
-.container-block-tour {
-  width: calc(100vw - 4rem); /* Adjusts for 2rem padding on each side of #root */
-  height: 700px;
-  background-color: #E7DAC7;
-}
-
-.container-block-tour-title {
-  padding-top: 20px;
-}
-
-/*
+/* YouTube Responsive Container */
 .video-responsive {
-  position: relative;
-  max-width: 1280px;
-  margin: auto;
   overflow: hidden;
-  padding-top: (720 / 1280) * 100%; 
-}
-
-.video-responsive iframe {
-  position: absolute;
-  top: 50%; 
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  width: 60%; 
-  height: 60%; 
-}
-*/
-
-
-.video-responsive {
-  width: 100%;
-  height: auto;
+  padding-bottom: 56.25%;
   position: relative;
-  padding-top: 56.25%; /* Behoudt 16:9 aspect ratio */
+  height: 0;
 }
 
 .video-responsive iframe {
-  position: absolute;
-  top: 0;
   left: 0;
-  width: 100%;
+  top: 0;
   height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
-
-@media (max-width: 768px) {
-  .image-container .parallax {
-    height: 300px; /* Kleinere hoogte voor mobiele apparaten */
-  }
-
-  .video-responsive {
-    padding-bottom: 75%; /* Aanpassen van de aspect ratio voor mobiele apparaten indien nodig */
-  }
-}
-
-@media (max-width: 480px) {
-  .image-container .parallax {
-    height: 200px; /* Nog kleinere hoogte voor zeer kleine apparaten */
-  }
-}
-
-@media (min-width: 768px) {
-  /* Voor grotere schermen kun je de padding-bottom waarde verlagen zodat de video hoger wordt */
-  .video-responsive {
-    padding-bottom: 50%; /* Past de hoogte van de video aan op desktopschermen */
-  }
-}
-
+/* Spotify Embed Container */
 .spotify-embed {
   position: relative;
   padding-bottom: 56.25%; 
@@ -212,7 +25,6 @@
   overflow: hidden;
   background-color: #000; 
   border-radius: 15px;
-
 }
 
 .spotify-embed iframe {
@@ -225,44 +37,9 @@
   background-color: #000; 
 }
 
-/* Media queries voor spotify-embed om padding te verminderen op kleinere schermen */
+/* Mobile adjustment for Spotify to be more square-ish if needed */
 @media (max-width: 768px) {
   .spotify-embed {
-    padding-bottom: 100%; /* Vergroot de verticale ruimte voor een vierkante look */
+    padding-bottom: 100%;
   }
 }
-
-@media (max-width: 480px) {
-  .spotify-embed {
-    padding-bottom: 120%; /* Nog meer verticale ruimte voor zeer kleine schermen */
-  }
-}
-
-
-
-.video {
-  margin-bottom: 20px; /* Voegt 20px ruimte toe onder elke video. Pas dit aan naar wens */
-}
-
-/* Optioneel: zorg voor wat ademruimte aan de boven- en onderkant van de container */
-.videos-container {
-  padding: 20px 0;
-}
-
-
-.parallax-tour {
-  height: 600px; /* standaardhoogte voor grotere schermen */
-}
-
-@media (max-width: 768px) {
-  .parallax-tour {
-    height: 400px; /* kleinere hoogte voor tablets */
-  }
-}
-
-@media (max-width: 480px) {
-  .parallax-tour {
-    height: 200px; /* nog kleinere hoogte voor mobiele telefoons */
-  }
-}
-
