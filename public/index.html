@@ -30,13 +30,18 @@
       // MIT License
       // https://github.com/rafgraph/spa-github-pages
       (function(l) {
-        if (l.search[1] === '/' ) {
+        // Only process if query string starts with ?/ (from 404.html redirect)
+        // and doesn't contain ~and~ (which indicates already corrupted/processed URL)
+        if (l.search[1] === '/' && l.search.indexOf('~and~') === -1) {
           var decoded = l.search.slice(1).split('&').map(function(s) { 
             return s.replace(/~and~/g, '&')
           }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+          // Only update if decoded path is valid (doesn't contain ~and~)
+          if (decoded.indexOf('~and~') === -1) {
+            window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+            );
+          }
         }
       }(window.location))
     </script>
