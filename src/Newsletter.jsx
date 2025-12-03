@@ -2,16 +2,53 @@ import React, { useState } from 'react';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState(''); // 'idle', 'sending', 'success', 'error'
+  const [message, setMessage] = useState('');
+
+  // Cloudflare Worker endpoint
+  const WORKER_URL = 'https://yc-mailing.yukonclubofficial.workers.dev/';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Basic client-side validation
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !trimmedEmail.includes('@')) {
+      setStatus('error');
+      setMessage('Please enter a valid email address.');
+      return;
+    }
+
     setStatus('sending');
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success');
-      setEmail('');
-    }, 1000);
+    setMessage('');
+
+    try {
+      // Call Cloudflare Worker API
+      const response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: trimmedEmail }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.ok === true) {
+        // Success: clear input and show success message
+        setEmail('');
+        setStatus('success');
+        setMessage("You're in. Thanks for joining the club ♡");
+      } else {
+        // Error response from server
+        setStatus('error');
+        setMessage('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      // Network error or fetch failed (including CORS errors)
+      setStatus('error');
+      setMessage('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -26,9 +63,14 @@ const Newsletter = () => {
          </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col items-center">
+      <form 
+        id="yc-mailing-form"
+        onSubmit={handleSubmit} 
+        className="flex flex-col items-center"
+      >
         <div className="w-full relative border-b-2 border-black">
            <input
+             id="yc-email"
              type="email"
              value={email}
              onChange={(e) => setEmail(e.target.value)}
@@ -41,14 +83,22 @@ const Newsletter = () => {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="mt-6 px-8 py-3 border-2 border-black bg-transparent text-black text-sm uppercase font-bold tracking-widest hover:bg-black hover:text-white transition-colors"
+          className="mt-6 px-8 py-3 border-2 border-black bg-transparent text-black text-sm uppercase font-bold tracking-widest hover:bg-black hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {status === 'sending' ? 'Adding...' : 'Sign Up'}
         </button>
 
-        {status === 'success' && (
-          <p className="mt-4 text-sm font-bold uppercase text-green-700 animate-pulse">
-             You're in.
+        {/* Message element for feedback */}
+        {message && (
+          <p 
+            id="yc-message"
+            className={`mt-4 text-sm font-bold uppercase ${
+              status === 'success' 
+                ? 'text-green-700 animate-pulse' 
+                : 'text-red-700'
+            }`}
+          >
+            {message}
           </p>
         )}
       </form>
