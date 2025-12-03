@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { path: "/music", label: "MUSIC" },
+    { path: "https://beacons.ai/yukonclub", label: "MUSIC", external: true },
     { path: "/videos", label: "VIDEOS" },
     { path: "/tour", label: "TOUR" },
     { path: "/contact", label: "CONTACT" }
@@ -33,12 +33,23 @@ const Navbar = () => {
       <nav className="hidden md:flex items-center space-x-6">
         {menuItems.map((item, index) => (
           <React.Fragment key={item.path}>
-            <Link
-              to={item.path}
-              className="text-lg font-larsseit-medium text-black hover:text-gray-500 transition-colors uppercase tracking-wide"
-            >
-              {item.label}
-            </Link>
+            {item.external ? (
+              <a
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-larsseit-medium text-black hover:text-gray-500 transition-colors uppercase tracking-wide"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                to={item.path}
+                className="text-lg font-larsseit-medium text-black hover:text-gray-500 transition-colors uppercase tracking-wide"
+              >
+                {item.label}
+              </Link>
+            )}
             {index < menuItems.length - 1 && (
                <span className="text-black mx-1">|</span>
             )}
@@ -58,14 +69,27 @@ const Navbar = () => {
       {isOpen && (
         <nav className="md:hidden flex flex-col items-center space-y-4 mt-6 w-full py-6 border-t-2 border-b-2 border-black bg-bone">
            {menuItems.map((item) => (
-             <Link
-               key={item.path}
-               to={item.path}
-               className="text-xl font-larsseit-medium text-black uppercase"
-               onClick={() => setIsOpen(false)}
-             >
-               {item.label}
-             </Link>
+             item.external ? (
+               <a
+                 key={item.path}
+                 href={item.path}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="text-xl font-larsseit-medium text-black uppercase"
+                 onClick={() => setIsOpen(false)}
+               >
+                 {item.label}
+               </a>
+             ) : (
+               <Link
+                 key={item.path}
+                 to={item.path}
+                 className="text-xl font-larsseit-medium text-black uppercase"
+                 onClick={() => setIsOpen(false)}
+               >
+                 {item.label}
+               </Link>
+             )
            ))}
         </nav>
       )}
