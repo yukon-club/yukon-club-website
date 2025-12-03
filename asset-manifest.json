@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/yukon-club-website/static/css/main.d8ae4ab4.css",
-    "main.js": "/yukon-club-website/static/js/main.e94eb016.js",
-    "static/js/453.311b3dbc.chunk.js": "/yukon-club-website/static/js/453.311b3dbc.chunk.js",
-    "static/media/yc_2021.jpg": "/yukon-club-website/static/media/yc_2021.00b25bc4fe00d3f79d4f.jpg",
-    "static/media/Larsseit Light Artwork.otf": "/yukon-club-website/static/media/Larsseit Light Artwork.32f0e3d5035d14b4d0c3.otf",
-    "static/media/Larsseit Medium.otf": "/yukon-club-website/static/media/Larsseit Medium.59db5a54a144b112f8a5.otf",
-    "index.html": "/yukon-club-website/index.html",
-    "main.d8ae4ab4.css.map": "/yukon-club-website/static/css/main.d8ae4ab4.css.map",
-    "main.e94eb016.js.map": "/yukon-club-website/static/js/main.e94eb016.js.map",
-    "453.311b3dbc.chunk.js.map": "/yukon-club-website/static/js/453.311b3dbc.chunk.js.map"
+    "main.css": "/static/css/main.f54cb8ce.css",
+    "main.js": "/static/js/main.0a2bac16.js",
+    "static/js/453.311b3dbc.chunk.js": "/static/js/453.311b3dbc.chunk.js",
+    "static/media/Larsseit Light Artwork.otf": "/static/media/Larsseit Light Artwork.32f0e3d5035d14b4d0c3.otf",
+    "static/media/Larsseit Medium.otf": "/static/media/Larsseit Medium.59db5a54a144b112f8a5.otf",
+    "index.html": "/index.html",
+    "main.f54cb8ce.css.map": "/static/css/main.f54cb8ce.css.map",
+    "main.0a2bac16.js.map": "/static/js/main.0a2bac16.js.map",
+    "453.311b3dbc.chunk.js.map": "/static/js/453.311b3dbc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d8ae4ab4.css",
-    "static/js/main.e94eb016.js"
+    "static/css/main.f54cb8ce.css",
+    "static/js/main.0a2bac16.js"
   ]
 }
