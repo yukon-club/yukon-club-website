@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Yukon Club</title>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 1;
-
-      var l = window.location;
-      
-      // Only redirect if URL doesn't already have the ?/ pattern
-      // This prevents infinite redirect loops on reload
-      if (l.search.indexOf('?/') === -1 && l.pathname !== '/' && l.pathname !== '/index.html') {
-        l.replace(
-          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          l.hash
-        );
-      }
-    </script>
+    <!-- 
+      This is a simple static multi-page site on GitHub Pages.
+      All SPA redirect logic has been removed to prevent URL mutation issues (?/, ~and~).
+      This 404.html is identical to index.html so React Router can handle all routes.
+      React Router handles client-side navigation internally without URL manipulation.
+      Note: Scripts will be injected by post-build script to match index.html
+    -->
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
   </body>
 </html> 
